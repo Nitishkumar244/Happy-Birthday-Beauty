@@ -3,122 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Beauty! ✨</title>
+    <title>Happy Birthday Beauty! 🌟</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             min-height: 100vh;
-            background: #06030F;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #090514;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 12px 60px;
+            padding: 20px 10px 60px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Ambient Royal Neon Lighting - No block */
-        .neon-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none !important;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .orb {
+        /* Ambient Stars Background */
+        .star {
             position: absolute;
+            background: #fff;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.45;
-            pointer-events: none !important;
+            opacity: 0.6;
+            animation: twinkle var(--duration) infinite ease-in-out;
         }
-        .orb-1 { top: -80px; left: -80px; width: 300px; height: 300px; background: #FF007F; }
-        .orb-2 { bottom: -80px; right: -80px; width: 350px; height: 350px; background: #00F3FF; }
 
-        /* Floating Top Music Button */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Music Floating Button */
         .music-btn {
             position: fixed;
             top: 15px;
             right: 15px;
-            z-index: 999999;
-            background: rgba(255, 0, 127, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: #ffffff;
-            padding: 12px 22px;
-            border-radius: 30px;
-            border: 2px solid #FF007F;
+            background: rgba(236, 72, 153, 0.2);
+            border: 1px solid #ec4899;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
-            font-weight: bold;
-            font-size: 0.95rem;
-            pointer-events: auto !important;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+            z-index: 100;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .music-btn:hover {
+            background: rgba(236, 72, 153, 0.6);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.8);
         }
 
         header {
             text-align: center;
-            margin-top: 40px;
+            margin-top: 25px;
             margin-bottom: 25px;
-            z-index: 10;
+            z-index: 2;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #FF007F;
-            text-shadow: 0 0 15px #FF007F, 0 0 30px #00F3FF;
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #ff007f, #7928ca, #00dfd8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
             margin-bottom: 8px;
-            letter-spacing: 1px;
         }
 
         .subtitle {
-            font-size: 1.05rem;
-            color: #FFD700;
-            text-shadow: 0 0 10px #FFD700;
+            font-size: 1.1rem;
+            color: #d1d5db;
             font-style: italic;
         }
 
-        /* Main Royal Neon Glass Card */
+        /* Main Glass Card */
         .main-card {
-            background: rgba(18, 10, 36, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 0, 127, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(236, 72, 153, 0.3);
             border-radius: 24px;
             width: 100%;
-            max-width: 550px;
-            padding: 30px 20px;
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.35), inset 0 0 15px rgba(0, 243, 255, 0.15);
+            max-width: 650px;
+            padding: 25px;
+            box-shadow: 0 0 40px rgba(121, 40, 202, 0.3);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 10;
+            z-index: 2;
             margin-bottom: 30px;
-            pointer-events: auto !important;
         }
 
-        /* Royal Neon Profile Frame */
-        .profile-frame {
+        /* Neon Profile Frame */
+        .profile-wrapper {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
-            padding: 6px;
-            background: linear-gradient(45deg, #FF007F, #00F3FF, #FFD700);
-            box-shadow: 0 0 30px #FF007F;
-            margin-bottom: 25px;
+            padding: 5px;
+            background: linear-gradient(45deg, #ff007f, #00dfd8);
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.7);
+            margin-bottom: 20px;
         }
 
         .profile-img {
@@ -126,116 +117,127 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #06030F;
-            display: block;
+            border: 3px solid #090514;
         }
 
-        /* Cake Section */
-        .cake-container {
+        /* Interactive Candle */
+        .cake-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 15px 0 20px;
+            margin: 20px 0;
             width: 100%;
         }
 
         .cake {
             position: relative;
-            width: 150px;
-            height: 85px;
-            background: linear-gradient(to right, #FF007F, #7928CA);
+            width: 160px;
+            height: 100px;
+            background: linear-gradient(to right, #ec4899, #8b5cf6);
             border-radius: 12px 12px 4px 4px;
-            box-shadow: inset 0 -10px 0 #9D174D, 0 0 25px rgba(255, 0, 127, 0.6);
-            margin-top: 35px;
+            box-shadow: inset 0 -15px 0 #be185d, 0 0 25px rgba(236, 72, 153, 0.5);
+            margin-top: 50px;
             cursor: pointer;
-            pointer-events: auto !important;
         }
 
         .cake::before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -15px;
             left: 0;
             width: 100%;
-            height: 15px;
+            height: 20px;
             background: #fbcfe8;
             border-radius: 10px 10px 0 0;
         }
 
         .candle {
             position: absolute;
-            top: -30px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 10px;
-            height: 30px;
-            background: linear-gradient(to bottom, #00F3FF, #ffffff);
+            width: 12px;
+            height: 35px;
+            background: repeating-linear-gradient(45deg, #00dfd8, #00dfd8 5px, #ffffff 5px, #ffffff 10px);
             border-radius: 3px;
         }
 
         .flame {
             position: absolute;
-            top: -16px;
+            top: -18px;
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;
-            height: 18px;
-            background: #FFD700;
+            width: 14px;
+            height: 20px;
+            background: #ff007f;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px #FFD700, 0 0 25px #FF007F;
-            animation: flicker 0.5s infinite alternate;
+            box-shadow: 0 0 15px #ff007f, 0 0 25px #ff007f;
+            animation: flicker 0.6s infinite alternate;
+            transition: opacity 0.5s ease;
         }
 
         .flame.off {
-            display: none !important;
+            opacity: 0;
+            animation: none;
         }
 
         @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1); }
-            100% { transform: translateX(-50%) scale(1.2); }
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            100% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
         }
 
-        .action-btn {
-            margin-top: 20px;
-            background: linear-gradient(45deg, #FF007F, #00F3FF);
+        .btn-action {
+            margin-top: 25px;
+            background: linear-gradient(45deg, #ff007f, #7928ca);
             border: none;
-            color: #ffffff;
-            padding: 13px 28px;
+            color: #fff;
+            padding: 12px 28px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
-            pointer-events: auto !important;
-            z-index: 20;
-            transition: transform 0.15s ease;
-        }
-        .action-btn:active {
-            transform: scale(0.96);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        /* Surprise Wish Box */
-        .wish-box {
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.8);
+        }
+
+        /* Secret Interactive Envelope */
+        .envelope-wrapper {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .letter-card {
             display: none;
-            background: rgba(6, 3, 15, 0.95);
-            border: 2px solid #00F3FF;
+            background: rgba(20, 15, 38, 0.95);
+            border: 1px solid #00dfd8;
             color: #ffffff;
-            padding: 22px;
+            padding: 20px;
             border-radius: 16px;
             margin-top: 20px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
-            pointer-events: auto !important;
+            box-shadow: 0 0 25px rgba(0, 223, 216, 0.4);
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Neon Polaroid Gallery */
         .gallery-title {
             font-size: 1.5rem;
-            margin: 25px 0 15px;
-            color: #00F3FF;
-            text-shadow: 0 0 12px #00F3FF;
-            z-index: 10;
+            margin: 20px 0 15px;
+            color: #00dfd8;
+            text-shadow: 0 0 10px #00dfd8;
         }
 
         .polaroid-grid {
@@ -244,21 +246,19 @@
             gap: 20px;
             justify-content: center;
             width: 100%;
-            max-width: 600px;
-            z-index: 10;
-            pointer-events: auto !important;
+            max-width: 700px;
+            z-index: 2;
         }
 
         .polaroid {
-            background: #120A24;
-            border: 1px solid #FF007F;
-            padding: 12px 12px 22px 12px;
+            background: #120b29;
+            border: 1px solid rgba(236, 72, 153, 0.4);
+            padding: 12px 12px 25px 12px;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
-            width: 190px;
-            text-align: center;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
             transform: rotate(-3deg);
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
+            width: 200px;
         }
 
         .polaroid:nth-child(even) {
@@ -266,197 +266,397 @@
         }
 
         .polaroid:hover {
-            transform: scale(1.05) rotate(0deg);
+            transform: scale(1.08) rotate(0deg);
+            box-shadow: 0 0 30px rgba(0, 223, 216, 0.6);
+            z-index: 5;
         }
 
         .polaroid img {
             width: 100%;
-            height: 170px;
+            height: 180px;
             object-fit: cover;
             border-radius: 4px;
         }
 
         .polaroid-caption {
-            color: #FFD700;
-            font-weight: bold;
+            color: #f472b6;
+            font-weight: 600;
+            text-align: center;
             margin-top: 10px;
             font-size: 0.95rem;
         }
 
+        /* Canvas for Confetti */
         #confetti-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none !important;
-            z-index: 999;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
-    <button class="music-btn" id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
-
-    <div class="neon-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-    </div>
+    <button class="music-btn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
 
     <canvas id="confetti-canvas"></canvas>
 
     <header>
         <h1>Happy Birthday Beauty! 🎉</h1>
-        <p class="subtitle">✨ Royal Neon Birthday Wishes ✨</p>
+        <p class="subtitle">Wishing you a magical day filled with love and laughter!</p>
     </header>
 
     <main class="main-card">
-        <!-- Sister Photo -->
-        <div class="profile-frame">
+        <!-- Photo using beauty di.jpeg -->
+        <div class="profile-wrapper">
             <img src="beauty di.jpeg" alt="Beauty" class="profile-img">
         </div>
 
         <!-- Interactive Cake -->
-        <div class="cake-container">
+        <div class="cake-section">
             <div class="cake" onclick="blowCandle()">
                 <div class="candle">
                     <div class="flame" id="flame"></div>
                 </div>
             </div>
-            <button class="action-btn" onclick="blowCandle()">🕯️ Blow Candle</button>
+            <button class="btn-action" onclick="blowCandle()">🕯️ Blow the Candle!</button>
         </div>
 
-        <!-- Interactive Wish Envelope -->
-        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <button class="action-btn" style="background: linear-gradient(45deg, #00F3FF, #FF007F);" onclick="openWish()">💌 Open Surprise Letter</button>
+        <!-- Secret Letter Button -->
+        <div class="envelope-wrapper">
+            <button class="btn-action" style="background: linear-gradient(45deg, #00dfd8, #7928ca);" onclick="toggleLetter()">💌 Open Birthday Wish</button>
+        </div>
 
-            <div class="wish-box" id="wish-box">
-                <h3 style="color: #FF007F; font-size: 1.25rem;">Dear Sister Beauty, ✨</h3>
-                <p style="margin-top: 12px; line-height: 1.6; color: #e5e7eb; font-size: 0.98rem;">
-                    Wishing you a birthday filled with infinite happiness, success, and glowing smiles! May all your dreams come true. Keep shining bright like a star! 💖
-                </p>
-            </div>
+        <!-- Hidden Birthday Card -->
+        <div class="letter-card" id="secret-letter">
+            <h3>Dear Sister Beauty, ✨</h3>
+            <p style="margin-top: 10px; line-height: 1.6; color: #e5e7eb;">
+                May your special day bring you endless happiness, success, and beautiful memories. Keep shining like the bright star you are! Happy Birthday! 💖
+            </p>
         </div>
     </main>
 
+    <!-- Neon Polaroid Gallery -->
     <h2 class="gallery-title">📸 Memory Gallery</h2>
     <div class="polaroid-grid">
         <div class="polaroid">
-            <img src="beauty di.jpeg" alt="Beauty Frame 1">
-            <div class="polaroid-caption">Best Sister Ever ❤️</div>
+            <img src="beauty di.jpeg" alt="Beauty Photo 1">
+            <div class="polaroid-caption">Best Sister ❤️</div>
         </div>
         <div class="polaroid">
-            <img src="beauty di.jpeg" alt="Beauty Frame 2">
-            <div class="polaroid-caption">Always Keep Smiling 🎉</div>
+            <img src="beauty di.jpeg" alt="Beauty Photo 2">
+            <div class="polaroid-caption">Keep Smiling ✨</div>
         </div>
     </div>
 
     <script>
-        // Candle Blow Action
-        function blowCandle() {
-            document.getElementById('flame').classList.add('off');
-            triggerConfetti();
-            startMusicEngine();
+        // Stars background generator
+        for (let i = 0; i < 60; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            document.body.appendChild(star);
         }
 
-        // Open Letter Action
-        function openWish() {
-            document.getElementById('wish-box').style.display = 'block';
-            triggerConfetti();
-            startMusicEngine();
-        }
-
-        // Web Audio Sound Engine
+        // Web Audio Synthesizer Music Player
         let audioCtx = null;
         let isPlaying = false;
-        let timer = null;
-
-        function startMusicEngine() {
-            if (!isPlaying) {
-                toggleMusic();
-            }
-        }
+        let musicInterval = null;
 
         function toggleMusic() {
-            const btn = document.getElementById('music-btn');
-            
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
-
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            if (!isPlaying) {
-                isPlaying = true;
-                btn.innerText = '⏸️ Pause Music';
-                
-                const notes = [264, 264, 297, 264, 352, 330, 264, 264, 297, 264, 396, 352, 264, 264, 528, 440, 352, 330, 297];
-                let i = 0;
-
-                timer = setInterval(() => {
-                    if (isPlaying) {
-                        playNote(notes[i], 0.3);
-                        i = (i + 1) % notes.length;
-                    }
-                }, 330);
-            } else {
+            if (isPlaying) {
+                clearInterval(musicInterval);
                 isPlaying = false;
-                clearInterval(timer);
-                btn.innerText = '🎵 Play Music';
+                document.querySelector('.music-btn').innerText = '🎵 Play Birthday Song';
+            } else {
+                isPlaying = true;
+                document.querySelector('.music-btn').innerText = '⏸️ Pause Song';
+                playBirthdayMelody();
             }
         }
 
-        function playNote(freq, dur) {
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + dur);
-            } catch(e) {}
+        function playNote(freq, duration) {
+            if (!isPlaying || !audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTimeYe raha poora original, custom code jisme **Royal Neon Theme**, **Interactive 3D Envelope**, **Candle Blow Effect**, **`beauty di.jpeg` photo**, aur **Background Music Synthesizer** add kar diya gaya hai:
+
+```html
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Beauty! ✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        // Confetti Effect
-        function triggerConfetti() {
-            const canvas = document.getElementById('confetti-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            const particles = [];
-            const colors = ['#FF007F', '#00F3FF', '#FFD700', '#ffffff'];
-
-            for (let i = 0; i < 65; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    r: Math.random() * 5 + 3,
-                    c: colors[Math.floor(Math.random() * colors.length)],
-                    s: Math.random() * 3 + 2
-                });
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach((p) => {
-                    ctx.beginPath();
-                    ctx.fillStyle = p.c;
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fill();
-                    p.y += p.s;
-                    if (p.y > canvas.height) p.y = -10;
-                });
-                requestAnimationFrame(draw);
-            }
-            draw();
+        body {
+            min-height: 100vh;
+            background: #090514;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px 60px;
+            overflow-x: hidden;
+            position: relative;
         }
-    </script>
-</body>
-</html>
+
+        /* Ambient Glowing Background Lights */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .orb-1 { top: -50px; left: -50px; width: 300px; height: 300px; background: #ec4899; }
+        .orb-2 { bottom: -50px; right: -50px; width: 350px; height: 350px; background: #8b5cf6; }
+
+        /* Floating Stars */
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* Top Music Control Button */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .music-control:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.8);
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899, 0 0 40px #8b5cf6;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            letter-spacing: 1px;
+        }
+
+        /* Main Container Card */
+        .main-card {
+            background: rgba(20, 15, 38, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 650px;
+            padding: 30px 20px;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+
+        /* Profile Frame with Neon Glow */
+        .profile-wrapper {
+            position: relative;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6);
+            box-shadow: 0 0 25px #ec4899;
+            margin-bottom: 25px;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px #ec4899; }
+            100% { box-shadow: 0 0 35px #8b5cf6; }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #090514;
+        }
+
+        /* Cake & Candle Section */
+        .cake-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0 25px;
+            width: 100%;
+        }
+
+        .cake {
+            position: relative;
+            width: 150px;
+            height: 90px;
+            background: linear-gradient(to bottom, #f472b6, #db2777);
+            border-radius: 12px 12px 4px 4px;
+            box-shadow: inset 0 -10px 0 #9d174d, 0 0 20px rgba(244, 114, 182, 0.3);
+            margin-top: 40px;
+            cursor: pointer;
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            width: 100%;
+            height: 16px;
+            background: #fbcfe8;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .candle {
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 32px;
+            background: repeating-linear-gradient(45deg, #38bdf8, #38bdf8 5px, #ffffff 5px, #ffffff 10px);
+            border-radius: 3px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: #fbbf24;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px #f59e0b, 0 0 25px #f59e0b;
+            animation: flicker 0.6s infinite alternate;
+            transition: opacity 0.5s ease;
+        }
+
+        .flame.off {
+            opacity: 0;
+            animation: none;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+        }
+
+        .btn-action {
+            margin-top: 20px;
+            background: linear-gradient(45deg, #ec4899, #8b5cf6);
+            border: none;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.8);
+        }
+
+        /* Envelope Interactive Section */
+        .envelope-container {
+            margin-top: 25px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .envelope {
+            width: 240px;
+            height: 150px;
+            background: #8b5cf6;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.04);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-top: 80px solid #a78bfa;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .envelope.op
