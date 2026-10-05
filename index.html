@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy Birthday Beauty! ✨ Ultra Neon Royal Edition</title>
+    <title>Happy Birthday Beauty! ✨ Ultra Neon</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,461 +15,26 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* Clean radial background directly on body - NO overlays that block clicks */
         body {
             min-height: 100vh;
-            background: #05020a;
+            background: #06030f;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 0, 127, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(0, 243, 255, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
+            background-attachment: fixed;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 14px 80px;
+            padding: 20px 14px 60px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* CRITICAL: pointer-events: none guarantees no click/touch blocking */
-        .ambient-lighting {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none !important;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .neon-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.55;
-            pointer-events: none !important;
-            animation: pulseOrb 6s ease-in-out infinite alternate;
-        }
-
-        .orb-pink {
-            top: -100px;
-            left: -100px;
-            width: 380px;
-            height: 380px;
-            background: #ff007f;
-        }
-
-        .orb-cyan {
-            bottom: -100px;
-            right: -100px;
-            width: 420px;
-            height: 420px;
-            background: #00f3ff;
-        }
-
-        .orb-gold {
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: #ffd700;
-            opacity: 0.25;
-        }
-
-        @keyframes pulseOrb {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
-            100% { transform: scale(1.15) translate(20px, -20px); opacity: 0.65; }
-        }
-
-        .top-nav {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 99999;
-            pointer-events: auto !important;
-        }
-
-        .music-btn {
-            background: rgba(255, 0, 127, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 30px;
-            border: 2px solid #ff007f;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.7), inset 0 0 10px rgba(0, 243, 255, 0.4);
-            font-weight: 700;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .music-btn:active {
-            transform: scale(0.94);
-            box-shadow: 0 0 30px rgba(255, 0, 127, 1);
-        }
-
-        header {
-            text-align: center;
-            margin-top: 50px;
-            margin-bottom: 30px;
-            z-index: 10;
-        }
-
-        .main-title {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 
-                0 0 5px #ffffff,
-                0 0 15px #ff007f,
-                0 0 30px #ff007f,
-                0 0 45px #00f3ff;
-            letter-spacing: 1.5px;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .subtitle-badge {
-            display: inline-block;
-            padding: 6px 18px;
-            background: rgba(255, 215, 0, 0.15);
-            border: 1px solid #ffd700;
-            border-radius: 20px;
-            color: #ffd700;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-shadow: 0 0 10px #ffd700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .main-card {
-            background: rgba(18, 10, 32, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 0, 127, 0.7);
-            border-radius: 28px;
-            width: 100%;
-            max-width: 580px;
-            padding: 35px 22px;
-            box-shadow: 
-                0 0 40px rgba(255, 0, 127, 0.4),
-                inset 0 0 20px rgba(0, 243, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
-            margin-bottom: 35px;
-            position: relative;
-        }
-
-        .profile-container {
-            position: relative;
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            padding: 6px;
-            background: linear-gradient(135deg, #ff007f, #00f3ff, #ffd700, #ff007f);
-            background-size: 300% 300%;
-            animation: gradientRotate 4s linear infinite;
-            box-shadow: 
-                0 0 25px #ff007f,
-                0 0 50px rgba(0, 243, 255, 0.6);
-            margin-bottom: 25px;
-        }
-
-        @keyframes gradientRotate {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #05020a;
-            display: block;
-            background-color: #120a20;
-        }
-
-        .cake-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0 25px;
-            width: 100%;
-        }
-
-        .cake-wrapper {
-            position: relative;
-            width: 200px;
-            height: 150px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            cursor: pointer;
-            margin-top: 30px;
-            pointer-events: auto !important;
-        }
-
-        /* Cake Tier 3 (Bottom) */
-        .cake-tier-3 {
-            width: 180px;
-            height: 45px;
-            background: linear-gradient(90deg, #ff007f, #b50060, #ff007f);
-            border-radius: 10px 10px 6px 6px;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8), inset 0 -6px 0 rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        /* Cake Tier 2 (Middle) */
-        .cake-tier-2 {
-            width: 135px;
-            height: 40px;
-            background: linear-gradient(90deg, #00f3ff, #0099b5, #00f3ff);
-            border-radius: 10px 10px 4px 4px;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8), inset 0 -6px 0 rgba(0, 0, 0, 0.3);
-            position: relative;
-            margin-bottom: -2px;
-        }
-
-        /* Cake Tier 1 (Top) */
-        .cake-tier-1 {
-            width: 90px;
-            height: 35px;
-            background: linear-gradient(90deg, #ffd700, #b59800, #ffd700);
-            border-radius: 8px 8px 4px 4px;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), inset 0 -5px 0 rgba(0, 0, 0, 0.3);
-            position: relative;
-            margin-bottom: -2px;
-        }
-
-        /* Cake Drips */
-        .frosting-drip {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px 10px 8px 8px;
-            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
-        }
-
-        /* Candle & Flame */
-        .candle-stick {
-            position: absolute;
-            top: -26px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 28px;
-            background: repeating-linear-gradient(45deg, #ffffff, #ffffff 5px, #ff007f 5px, #ff007f 10px);
-            border-radius: 3px;
-            box-shadow: 0 0 10px #ffffff;
-            z-index: 5;
-        }
-
-        .flame-element {
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 22px;
-            background: radial-gradient(ellipse at bottom, #ffffff 0%, #ffd700 40%, #ff007f 100%);
-            border-radius: 50% 50% 20% 20%;
-            box-shadow: 
-                0 0 15px #ffd700,
-                0 0 30px #ff007f,
-                0 0 45px #ff007f;
-            animation: flickerFlame 0.3s infinite alternate ease-in-out;
-            z-index: 6;
-        }
-
-        .flame-element.extinguished {
-            display: none !important;
-        }
-
-        .smoke-element {
-            display: none;
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 20px;
-            background: rgba(200, 200, 200, 0.6);
-            border-radius: 10px;
-            filter: blur(4px);
-            animation: smokeRise 1.5s forwards ease-out;
-        }
-
-        @keyframes flickerFlame {
-            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
-            100% { transform: translateX(-50%) scale(1.18) rotate(2deg); }
-        }
-
-        @keyframes smokeRise {
-            0% { opacity: 0.8; transform: translateX(-50%) translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateX(-50%) translateY(-35px) scale(2.5); }
-        }
-
-        .neon-btn {
-            margin-top: 22px;
-            background: linear-gradient(135deg, #ff007f, #7928ca, #00f3ff);
-            background-size: 200% 200%;
-            border: none;
-            color: #ffffff;
-            padding: 14px 32px;
-            font-size: 1.05rem;
-            font-weight: 800;
-            border-radius: 35px;
-            cursor: pointer;
-            box-shadow: 
-                0 0 25px rgba(255, 0, 127, 0.8),
-                0 0 10px rgba(0, 243, 255, 0.5);
-            transition: all 0.2s ease;
-            pointer-events: auto !important;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .neon-btn:active {
-            transform: scale(0.95);
-            box-shadow: 0 0 35px rgba(0, 243, 255, 1);
-        }
-
-        .wish-envelope-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .wish-card-letter {
-            display: none;
-            background: rgba(8, 4, 18, 0.95);
-            border: 2px solid #00f3ff;
-            color: #ffffff;
-            padding: 26px 20px;
-            border-radius: 20px;
-            margin-top: 22px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 
-                0 0 35px rgba(0, 243, 255, 0.6),
-                inset 0 0 15px rgba(255, 0, 127, 0.3);
-            animation: expandLetter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            pointer-events: auto !important;
-        }
-
-        @keyframes expandLetter {
-            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .letter-heading {
-            color: #ff007f;
-            font-size: 1.35rem;
-            font-weight: 800;
-            text-shadow: 0 0 12px #ff007f;
-            margin-bottom: 12px;
-        }
-
-        .letter-body {
-            font-size: 1.02rem;
-            line-height: 1.65;
-            color: #e2e8f0;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-        }
-
-        .letter-highlight {
-            color: #ffd700;
-            font-weight: 700;
-            text-shadow: 0 0 8px #ffd700;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin: 30px 0 20px;
-            color: #00f3ff;
-            text-shadow: 
-                0 0 10px #00f3ff,
-                0 0 25px #00f3ff;
-            z-index: 10;
-            letter-spacing: 1px;
-        }
-
-        .polaroid-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 22px;
-            justify-content: center;
-            width: 100%;
-            max-width: 620px;
-            z-index: 10;
-            pointer-events: auto !important;
-        }
-
-        .polaroid-card {
-            background: #0d061a;
-            border: 2px solid #ff007f;
-            padding: 14px 14px 22px 14px;
-            border-radius: 14px;
-            box-shadow: 0 0 25px rgba(255, 0, 127, 0.5);
-            width: 210px;
-            text-align: center;
-            transform: rotate(-3deg);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-
-        .polaroid-card:nth-child(even) {
-            transform: rotate(3deg);
-            border-color: #00f3ff;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);
-        }
-
-        .polaroid-card:hover, .polaroid-card:active {
-            transform: scale(1.06) rotate(0deg);
-            box-shadow: 0 0 35px #ffd700;
-            border-color: #ffd700;
-        }
-
-        .polaroid-frame {
-            width: 100%;
-            height: 185px;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #05020a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .polaroid-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .polaroid-caption {
-            color: #ffd700;
-            font-weight: 700;
-            margin-top: 12px;
-            font-size: 0.98rem;
-            text-shadow: 0 0 8px #ffd700;
-        }
-
+        /* Confetti canvas strictly behind all interactive UI elements */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -477,141 +42,451 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none !important;
-            z-index: 99999;
+            z-index: 1; /* Below interactive controls */
+        }
+
+        /* Top Navigation Bar with High Z-Index */
+        .top-bar {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9999;
+            pointer-events: auto !important;
+        }
+
+        .music-btn {
+            background: #120a24;
+            color: #ffffff;
+            padding: 12px 22px;
+            border-radius: 30px;
+            border: 2px solid #FF007F;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.8), inset 0 0 10px rgba(0, 243, 255, 0.4);
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            pointer-events: auto !important;
+            touch-action: manipulation;
+        }
+
+        .music-btn:active {
+            transform: scale(0.94);
+            border-color: #00F3FF;
+            box-shadow: 0 0 25px #00F3FF;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-top: 55px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .main-title {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 
+                0 0 5px #ffffff,
+                0 0 15px #FF007F,
+                0 0 30px #FF007F,
+                0 0 45px #00F3FF;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .subtitle-tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid #FFD700;
+            border-radius: 20px;
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-shadow: 0 0 10px #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .main-card {
+            background: rgba(18, 10, 36, 0.9);
+            border: 2px solid rgba(255, 0, 127, 0.8);
+            border-radius: 28px;
+            width: 100%;
+            max-width: 520px;
+            padding: 30px 20px;
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.4), inset 0 0 20px rgba(0, 243, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            margin-bottom: 30px;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, #FF007F, #00F3FF, #FFD700, #FF007F);
+            box-shadow: 0 0 25px #FF007F, 0 0 40px rgba(0, 243, 255, 0.6);
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #06030f;
+            display: block;
+            background-color: #120a24;
+        }
+
+        .cake-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 15px 0 20px;
+            width: 100%;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .cake-wrapper {
+            position: relative;
+            width: 180px;
+            height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            cursor: pointer;
+            margin-top: 25px;
+            pointer-events: auto !important;
+            touch-action: manipulation;
+        }
+
+        .cake-tier-3 {
+            width: 160px;
+            height: 40px;
+            background: linear-gradient(90deg, #FF007F, #a10050, #FF007F);
+            border-radius: 8px 8px 4px 4px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.8);
+        }
+
+        .cake-tier-2 {
+            width: 120px;
+            height: 35px;
+            background: linear-gradient(90deg, #00F3FF, #0088a1, #00F3FF);
+            border-radius: 8px 8px 4px 4px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+            margin-bottom: -2px;
+        }
+
+        .cake-tier-1 {
+            width: 80px;
+            height: 30px;
+            background: linear-gradient(90deg, #FFD700, #a18800, #FFD700);
+            border-radius: 8px 8px 4px 4px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            margin-bottom: -2px;
+        }
+
+        .candle-stick {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 25px;
+            background: linear-gradient(to bottom, #ffffff, #FF007F);
+            border-radius: 3px;
+            box-shadow: 0 0 8px #ffffff;
+            z-index: 5;
+        }
+
+        .flame-element {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: radial-gradient(ellipse at bottom, #ffffff 0%, #FFD700 40%, #FF007F 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 12px #FFD700, 0 0 25px #FF007F;
+            animation: flicker 0.3s infinite alternate ease-in-out;
+            z-index: 6;
+        }
+
+        .flame-element.off {
+            display: none !important;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); }
+            100% { transform: translateX(-50%) scale(1.18); }
+        }
+
+        /* High-contrast Touchable Neon Action Buttons */
+        .neon-action-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #FF007F, #7928CA, #00F3FF);
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            padding: 14px 30px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            border-radius: 35px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.9), 0 0 10px rgba(0, 243, 255, 0.6);
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 1000;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .neon-action-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 30px #00F3FF;
+        }
+
+        .wish-box {
+            display: none;
+            background: #090414;
+            border: 2px solid #00F3FF;
+            color: #ffffff;
+            padding: 24px 18px;
+            border-radius: 18px;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .wish-title {
+            color: #FF007F;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px #FF007F;
+            margin-bottom: 10px;
+        }
+
+        .wish-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 25px 0 20px;
+            color: #00F3FF;
+            text-shadow: 0 0 12px #00F3FF;
+            position: relative;
+            z-index: 100;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+            max-width: 580px;
+            position: relative;
+            z-index: 100;
+        }
+
+        .polaroid-card {
+            background: #120a24;
+            border: 2px solid #FF007F;
+            padding: 12px 12px 18px 12px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+            width: 200px;
+            text-align: center;
+            transform: rotate(-2deg);
+        }
+
+        .polaroid-card:nth-child(even) {
+            transform: rotate(2deg);
+            border-color: #00F3FF;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .polaroid-img-frame {
+            width: 100%;
+            height: 170px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #06030f;
+        }
+
+        .polaroid-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid-caption {
+            color: #FFD700;
+            font-weight: 800;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            text-shadow: 0 0 8px #FFD700;
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Neon Glow Layer (Strictly Non-blocking) -->
-    <div class="ambient-lighting">
-        <div class="neon-orb orb-pink"></div>
-        <div class="neon-orb orb-cyan"></div>
-        <div class="neon-orb orb-gold"></div>
-    </div>
+    <!-- Confetti Background Canvas (Strictly Non-Blocking) -->
+    <canvas id="confetti-canvas"></canvas>
 
-    <!-- Floating Audio Toggle Button -->
-    <div class="top-nav">
-        <button class="music-btn" id="music-btn" onclick="toggleMusic()">
+    <!-- Top Music Control -->
+    <div class="top-bar">
+        <button class="music-btn" id="music-btn">
             <span id="music-icon">🎵</span>
             <span id="music-text">Play Birthday Tune</span>
         </button>
     </div>
 
-    <!-- Confetti Explosion Canvas -->
-    <canvas id="confetti-canvas"></canvas>
-
-    <!-- Header Title -->
+    <!-- Header -->
     <header>
-        <h1 class="main-title">Happy Birthday<br>Beauty! 🎉</h1>
-        <div class="subtitle-badge">✨ Royal Ultra Neon Celebration ✨</div>
+        <h1 class="main-title">Happy Birthday<br>Beauty! ✨</h1>
+        <div class="subtitle-tag">✨ Ultra Neon Royal Celebration ✨</div>
     </header>
 
-    <!-- Main Glassmorphism Display Card -->
+    <!-- Main Interactive Card -->
     <main class="main-card">
         
         <!-- Sister Beauty Profile Avatar -->
         <div class="profile-container">
-            <img src="beauty di.jpeg" alt="Sister Beauty" class="profile-img" onerror="this.onerror=null; this.src='https://placehold.co/300x300/120a20/ff007f?text=Beauty+Di';">
+            <img src="beauty di.jpeg" alt="Beauty" class="profile-img" onerror="this.onerror=null; this.src='https://placehold.co/300x300/120a24/FF007F?text=Beauty+Di';">
         </div>
 
-        <!-- Interactive 3-Tier Neon Cake -->
-        <div class="cake-section">
-            <div class="cake-wrapper" onclick="blowCandle()">
+        <!-- Interactive Birthday Cake -->
+        <div class="cake-area">
+            <div class="cake-wrapper" id="cake-touch-trigger">
                 <div class="candle-stick">
-                    <div class="flame-element" id="flame"></div>
-                    <div class="smoke-element" id="smoke"></div>
+                    <div class="flame-element" id="candle-flame"></div>
                 </div>
-                <div class="cake-tier-1">
-                    <div class="frosting-drip"></div>
-                </div>
-                <div class="cake-tier-2">
-                    <div class="frosting-drip"></div>
-                </div>
-                <div class="cake-tier-3">
-                    <div class="frosting-drip"></div>
-                </div>
+                <div class="cake-tier-1"></div>
+                <div class="cake-tier-2"></div>
+                <div class="cake-tier-3"></div>
             </div>
-            <button class="neon-btn" onclick="blowCandle()">
+            <button class="neon-action-btn" id="blow-btn">
                 <span>🕯️</span> Blow The Candle
             </button>
         </div>
 
-        <!-- Interactive Surprise Envelope -->
-        <div class="wish-envelope-container">
-            <button class="neon-btn" style="background: linear-gradient(135deg, #00f3ff, #ff007f);" onclick="openWishLetter()">
+        <!-- Interactive Surprise Wish Letter -->
+        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <button class="neon-action-btn" style="background: linear-gradient(135deg, #00F3FF, #FF007F);" id="letter-btn">
                 <span>💌</span> Open Surprise Letter
             </button>
 
-            <div class="wish-card-letter" id="wish-card">
-                <h3 class="letter-heading">Dearest Sister Beauty, ✨</h3>
-                <p class="letter-body">
-                    On this ultra-special day, I wish you endless joy, radiant health, and boundless success! 🌟<br>
-                    May your life always shine as brightly as these neon lights. <span class="letter-highlight">Keep smiling and rock the world always! 💖</span>
+            <div class="wish-box" id="wish-letter">
+                <h3 class="wish-title">Dearest Sister Beauty, ✨</h3>
+                <p class="wish-text">
+                    May your day be filled with endless joy, laughter, and glowing success! Keep shining bright always! 💖
                 </p>
             </div>
         </div>
 
     </main>
 
-    <!-- Neon Polaroid Memory Gallery -->
+    <!-- Polaroid Memory Gallery -->
     <h2 class="section-title">📸 Memory Gallery</h2>
-    <section class="polaroid-gallery">
+    <section class="gallery-grid">
         <div class="polaroid-card">
-            <div class="polaroid-frame">
-                <img src="beauty di.jpeg" alt="Beauty Memory 1" onerror="this.onerror=null; this.src='https://placehold.co/300x300/120a20/ff007f?text=Beauty+Di';">
+            <div class="polaroid-img-frame">
+                <img src="beauty di.jpeg" alt="Beauty" onerror="this.onerror=null; this.src='https://placehold.co/300x300/120a24/FF007F?text=Beauty+Di';">
             </div>
             <div class="polaroid-caption">Best Sister Ever ❤️</div>
         </div>
         <div class="polaroid-card">
-            <div class="polaroid-frame">
-                <img src="beauty di.jpeg" alt="Beauty Memory 2" onerror="this.onerror=null; this.src='https://placehold.co/300x300/120a20/00f3ff?text=Shine+Bright';">
+            <div class="polaroid-img-frame">
+                <img src="beauty di.jpeg" alt="Beauty" onerror="this.onerror=null; this.src='https://placehold.co/300x300/120a24/00F3FF?text=Stay+Blessed';">
             </div>
-            <div class="polaroid-caption">Keep Shining Bright ✨</div>
+            <div class="polaroid-caption">Stay Blessed Always 💖</div>
         </div>
     </section>
 
     <script>
+        // Bulletproof Event Binder helper (handles both desktop click and mobile touchstart)
+        function bindDirectTouch(elementId, callbackAction) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            let handled = false;
+
+            const triggerHandler = function(e) {
+                e.stopPropagation();
+                if (!handled) {
+                    handled = true;
+                    callbackAction();
+                    setTimeout(() => { handled = false; }, 300);
+                }
+            };
+
+            element.addEventListener('click', triggerHandler, { passive: false });
+            element.addEventListener('touchstart', triggerHandler, { passive: false });
+        }
+
         let isCandleBlown = false;
 
-        function blowCandle() {
-            const flame = document.getElementById('flame');
-            const smoke = document.getElementById('smoke');
-
+        // Action 1: Blow Candle Logic
+        function handleBlowCandle() {
+            const flame = document.getElementById('candle-flame');
             if (!isCandleBlown) {
-                flame.classList.add('extinguished');
-                smoke.style.display = 'block';
+                flame.classList.add('off');
                 isCandleBlown = true;
-                
-                triggerConfettiBurst();
-                autoStartAudio();
             } else {
-                // Relight candle on second tap
-                flame.classList.remove('extinguished');
-                smoke.style.display = 'none';
+                flame.classList.remove('off');
                 isCandleBlown = false;
             }
+
+            fireConfettiBurst();
+            startAudioTune();
         }
 
-        function openWishLetter() {
-            const wishCard = document.getElementById('wish-card');
-            wishCard.style.display = 'block';
-            
-            triggerConfettiBurst();
-            autoStartAudio();
+        // Action 2: Open Letter Logic
+        function handleOpenLetter() {
+            const letter = document.getElementById('wish-letter');
+            letter.style.display = 'block';
+
+            fireConfettiBurst();
+            startAudioTune();
         }
 
+        // Action 3: Web Audio API Tune Engine
         let audioCtx = null;
         let isPlaying = false;
-        let noteInterval = null;
+        let noteTimer = null;
 
-        function autoStartAudio() {
+        function startAudioTune() {
             if (!isPlaying) {
-                toggleMusic();
+                handleMusicToggle();
             }
         }
 
-        function toggleMusic() {
+        function handleMusicToggle() {
             const btnText = document.getElementById('music-text');
             const btnIcon = document.getElementById('music-icon');
 
@@ -625,12 +500,101 @@
 
             if (!isPlaying) {
                 isPlaying = true;
-                btnText.innerText = 'Pause Music';
+                btnText.innerText = 'Pause Tune';
                 btnIcon.innerText = '⏸️';
 
-                // Happy Birthday Melodic Frequencies (Hz)
-                const happyBirthdayNotes = [
+                const notes = [
                     264, 264, 297, 264, 352, 330,
                     264, 264, 297, 264, 396, 352,
-                    264, 264, 528, 440, 352, 330, 297,
-     
+                    264, 264, 528, 440, 352, 330, 297
+                ];
+                let idx = 0;
+
+                noteTimer = setInterval(() => {
+                    if (isPlaying) {
+                        playSynthNote(notes[idx], 0.3);
+                        idx = (idx + 1) % notes.length;
+                    }
+                }, 330);
+            } else {
+                isPlaying = false;
+                clearInterval(noteTimer);
+                btnText.innerText = 'Play Birthday Tune';
+                btnIcon.innerText = '🎵';
+            }
+        }
+
+        function playSynthNote(freq, duration) {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function fireConfettiBurst() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const colors = ['#FF007F', '#00F3FF', '#FFD700', '#ffffff'];
+
+            for (let i = 0; i < 75; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height * 0.4,
+                    r: Math.random() * 5 + 3,
+                    c: colors[Math.floor(Math.random() * colors.length)],
+                    sy: Math.random() * 4 + 2,
+                    sx: (Math.random() - 0.5) * 3
+                });
+            }
+
+            let frames = 0;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p) => {
+                    ctx.beginPath();
+                    ctx.fillStyle = p.c;
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    p.y += p.sy;
+                    p.x += p.sx;
+                });
+
+                frames++;
+                if (frames < 140) {
+                    requestAnimationFrame(draw);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            draw();
+        }
+
+        // Bind all interactive controls securely on load
+        window.addEventListener('DOMContentLoaded', () => {
+            bindDirectTouch('blow-btn', handleBlowCandle);
+            bindDirectTouch('cake-touch-trigger', handleBlowCandle);
+            bindDirectTouch('letter-btn', handleOpenLetter);
+            bindDirectTouch('music-btn', handleMusicToggle);
+        });
+    </script>
+</body>
+</html>
+```
