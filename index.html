@@ -1,441 +1,379 @@
-```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Beauty! ✨</title>
+    <title>Happy Birthday Beauty  | Royal Neon Celebration</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neonPink: '#ff007f',
+                        neonPurple: '#a100ff',
+                        neonCyan: '#00f3ff',
+                        neonGold: '#ffd700',
+                        darkBg: '#090514',
+                        cardBg: '#120b29'
+                    },
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                        dancing: ['Dancing Script', 'cursive'],
+                        vibes: ['Great Vibes', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         body {
-            min-height: 100vh;
-            background: #090514;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #090514;
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 12px 80px;
+            font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
-            position: relative;
+            scroll-behavior: smooth;
         }
 
-        /* Ambient Glowing Background Lights */
-        .glow-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.35;
-            pointer-events: none;
-            z-index: 1;
+        /* Neon Glow Texts and Borders */
+        .neon-text-pink {
+            text-shadow: 0 0 5px #ff007f, 0 0 15px #ff007f, 0 0 30px #ff007f, 0 0 50px #ff007f;
         }
-        .orb-1 { top: -60px; left: -60px; width: 320px; height: 320px; background: #ec4899; }
-        .orb-2 { bottom: -60px; right: -60px; width: 360px; height: 360px; background: #8b5cf6; }
-
-        /* Floating Stars */
-        .star {
-            position: absolute;
-            background: #ffffff;
-            border-radius: 50%;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: twinkle var(--duration) infinite ease-in-out;
+        .neon-text-cyan {
+            text-shadow: 0 0 5px #00f3ff, 0 0 15px #00f3ff, 0 0 30px #00f3ff;
         }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.4); }
+        .neon-text-gold {
+            text-shadow: 0 0 5px #ffd700, 0 0 15px #ffd700, 0 0 30px #ffd700;
+        }
+        .neon-border-glow {
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4), inset 0 0 15px rgba(255, 0, 127, 0.2);
+            border: 2px solid #ff007f;
+        }
+        .neon-box-cyan {
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+            border: 1px solid rgba(0, 243, 255, 0.5);
         }
 
-        /* Top Fixed Music Control Button */
-        .music-control {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 100;
-            background: rgba(20, 15, 38, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid #ec4899;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
-            font-weight: 700;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .music-control:active {
-            transform: scale(0.95);
-        }
-
-        header {
-            text-align: center;
-            margin-top: 25px;
-            margin-bottom: 25px;
-            z-index: 2;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #ffffff;
-            text-shadow: 0 0 10px #ec4899, 0 0 25px #ec4899, 0 0 40px #8b5cf6;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .subtitle {
-            font-size: 1.05rem;
-            color: #e5e7eb;
-            letter-spacing: 0.5px;
-        }
-
-        .main-card {
-            background: rgba(20, 15, 38, 0.75);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(236, 72, 153, 0.4);
-            border-radius: 28px;
-            width: 100%;
-            max-width: 600px;
-            padding: 30px 20px;
-            box-shadow: 0 0 35px rgba(139, 92, 246, 0.25);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
-            margin-bottom: 30px;
-        }
-
-        /* Profile Frame with Neon Glow */
-        .profile-wrapper {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            padding: 5px;
-            background: linear-gradient(45deg, #ec4899, #8b5cf6, #00dfd8);
-            box-shadow: 0 0 25px #ec4899;
-            margin-bottom: 25px;
-            animation: pulseGlow 3s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 20px #ec4899; }
-            100% { box-shadow: 0 0 40px #8b5cf6; }
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #090514;
-            display: block;
-        }
-
-        /* Cake & Candle Section */
-        .cake-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 15px 0 25px;
-            width: 100%;
-        }
-
-        .cake {
-            position: relative;
-            width: 160px;
-            height: 90px;
-            background: linear-gradient(to bottom, #f472b6, #db2777);
-            border-radius: 12px 12px 6px 6px;
-            box-shadow: inset 0 -10px 0 #9d174d, 0 0 25px rgba(244, 114, 182, 0.4);
-            margin-top: 40px;
-            cursor: pointer;
-        }
-
-        .cake::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: 0;
-            width: 100%;
-            height: 16px;
-            background: #fbcfe8;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .candle {
-            position: absolute;
-            top: -32px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 32px;
-            background: repeating-linear-gradient(45deg, #38bdf8, #38bdf8 6px, #ffffff 6px, #ffffff 12px);
-            border-radius: 3px;
-        }
-
+        /* Candle Flame Animation */
         .flame {
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 22px;
-            background: #fbbf24;
+            width: 16px;
+            height: 26px;
+            background: linear-gradient(to bottom, #fff 0%, #ffeb3b 30%, #ff5722 70%, transparent 100%);
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px #f59e0b, 0 0 25px #f59e0b;
-            animation: flicker 0.6s infinite alternate;
-            transition: opacity 0.5s ease;
-        }
-
-        .flame.off {
-            opacity: 0;
-            animation: none;
+            box-shadow: 0 0 15px #ffeb3b, 0 0 30px #ff5722;
+            animation: flicker 0.15s infinite alternate;
+            transform-origin: center bottom;
         }
 
         @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
-            100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+            100% { transform: scale(1.1) rotate(2deg); opacity: 1; }
         }
 
-        .btn-action {
-            margin-top: 20px;
-            background: linear-gradient(45deg, #ec4899, #8b5cf6);
-            border: none;
-            color: #ffffff;
-            padding: 12px 28px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .btn-action:active {
-            transform: scale(0.96);
-        }
-
-        .envelope-container {
-            margin-top: 25px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .envelope {
-            width: 260px;
-            height: 150px;
-            background: #8b5cf6;
-            border-radius: 12px;
-            position: relative;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            user-select: none;
-        }
-
-        .envelope:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 35px rgba(236, 72, 153, 0.8);
-        }
-
-        .envelope-text {
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1.1rem;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .letter-card {
-            display: none;
-            background: rgba(18, 12, 38, 0.95);
-            border: 2px solid #ec4899;
-            color: #ffffff;
-            padding: 25px;
-            border-radius: 20px;
-            margin-top: 20px;
-            width: 95%;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(236, 72, 153, 0.5);
-        }
-
-        .letter-card.show {
-            display: block;
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Polaroid Gallery */
-        .gallery-title {
-            font-size: 1.6rem;
-            margin: 25px 0 15px;
-            color: #ec4899;
-            text-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
-            z-index: 2;
-        }
-
-        .polaroid-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            width: 100%;
-            max-width: 650px;
-            z-index: 2;
-        }
-
-        .polaroid {
-            background: #ffffff;
-            padding: 12px 12px 25px 12px;
+        /* Smoke effect after blown */
+        .smoke {
+            width: 8px;
+            height: 20px;
+            background: rgba(200, 200, 200, 0.6);
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
-            transform: rotate(-2deg);
-            transition: all 0.3s ease;
-            width: 220px;
+            filter: blur(4px);
+            animation: smokeRise 2s forwards;
+            display: none;
         }
 
-        .polaroid:nth-child(even) {
-            transform: rotate(2deg);
+        @keyframes smokeRise {
+            0% { opacity: 0.8; transform: translateY(0) scaleX(1); }
+            100% { opacity: 0; transform: translateY(-40px) scaleX(3); }
         }
 
-        .polaroid:hover {
-            transform: scale(1.06) rotate(0deg);
-            box-shadow: 0 0 30px rgba(0, 223, 216, 0.8);
-            z-index: 5;
+        /* Envelope Styling */
+        .envelope-wrapper {
+            perspective: 1000px;
+        }
+        .envelope {
+            position: relative;
+            background: #1e0e38;
+            border: 2px solid #a100ff;
+            box-shadow: 0 0 25px rgba(161, 0, 255, 0.4);
+            transition: transform 0.6s ease;
+        }
+        
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(18, 11, 41, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .polaroid img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 6px;
-            display: block;
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
         }
 
-        .polaroid-caption {
-            color: #111827;
-            font-weight: 700;
-            text-align: center;
-            margin-top: 12px;
-            font-size: 0.95rem;
-        }
-
-        #confetti-canvas {
+        /* Canvas particles */
+        #starsCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 10;
+            z-index: 0;
         }
     </style>
 </head>
-<body>
+<body class="relative min-h-screen pb-16">
 
-    <button class="music-control" id="music-btn" onclick="handleMusicClick()">
-        <span id="music-icon">🎵</span> <span id="music-text">Play Song</span>
-    </button>
+    <canvas id="starsCanvas"></canvas>
 
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-
-    <canvas id="confetti-canvas"></canvas>
-
-    <header>
-        <h1>Happy Birthday Beauty! 🎉</h1>
-        <p class="subtitle">To the most wonderful sister in the world ✨</p>
-    </header>
-
-    <main class="main-card">
-        <!-- Main Sister Photo using beauty di.jpeg -->
-        <div class="profile-wrapper">
-            <img src="beauty di.jpeg" alt="Beauty Sister" class="profile-img" onerror="this.src='https://placehold.co/300x300/ec4899/ffffff?text=Beauty+Di'">
-        </div>
-
-        <!-- Interactive Cake & Candle -->
-        <div class="cake-section">
-            <div class="cake" onclick="blowCandle()">
-                <div class="candle">
-                    <div class="flame" id="flame"></div>
+    <!-- Music Bar Top Float -->
+    <div class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-xl">
+        <div class="glass-card px-4 py-3 rounded-full flex items-center justify-between shadow-2xl border border-neonPink/40">
+            <div class="flex items-center space-x-3 overflow-hidden">
+                <button id="playBtn" onclick="togglePlay()" class="w-10 h-10 rounded-full bg-gradient-to-r from-neonPink to-neonPurple flex items-center justify-center shadow-lg hover:scale-105 transition shrink-0">
+                    <i id="playIcon" class="fas fa-play text-white text-sm"></i>
+                </button>
+                <div class="truncate">
+                    <p id="trackTitle" class="text-xs font-semibold text-neonCyan truncate">🎵 Happy Birthday (Upbeat Celebration)</p>
+                    <p id="trackSubtitle" class="text-[10px] text-gray-400">Tap play for high volume music!</p>
                 </div>
             </div>
-            <button class="btn-action" onclick="blowCandle()">🕯️ Blow the Candle!</button>
-        </div>
 
-        <!-- Interactive Envelope & Wish Card -->
-        <div class="envelope-container">
-            <div class="envelope" id="envelope" onclick="toggleLetter()">
-                <div class="envelope-text">💌 Tap to Open Surprise Wish</div>
+            <div class="flex items-center space-x-2 shrink-0">
+                <button onclick="switchTrack()" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-medium text-pink-300 transition flex items-center gap-1 border border-pink-500/30">
+                    <i class="fas fa-step-forward text-[10px]"></i> Change Track
+                </button>
+                <button onclick="toggleMute()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-300">
+                    <i id="volumeIcon" class="fas fa-volume-up text-xs"></i>
+                </button>
             </div>
-
-            <div class="letter-card" id="secret-letter">
-                <h3 style="color: #ec4899; font-size: 1.4rem; margin-bottom: 10px;">Dear Sister Beauty, ✨</h3>
-                <p style="line-height: 1.6; font-size: 1.05rem; color: #f3f4f6;">
-                    Happy Birthday! On your special day, I wish you endless laughter, glowing health, and massive success in everything you do. Keep spreading positivity and shining brightly! 💖
-                </p>
-            </div>
-        </div>
-    </main>
-
-    <!-- Polaroid Gallery -->
-    <h2 class="gallery-title">📸 Memory Gallery</h2>
-    <div class="polaroid-grid">
-        <div class="polaroid">
-            <img src="beauty di.jpeg" alt="Beauty Memory 1" onerror="this.src='https://placehold.co/300x300/ec4899/ffffff?text=Beauty+Di'">
-            <div class="polaroid-caption">Best Sister Ever ❤️</div>
-        </div>
-        <div class="polaroid">
-            <img src="beauty di.jpeg" alt="Beauty Memory 2" onerror="this.src='https://placehold.co/300x300/8b5cf6/ffffff?text=Happy+Birthday'">
-            <div class="polaroid-caption">Always Keep Smiling ✨</div>
         </div>
     </div>
 
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10 max-w-4xl mx-auto px-4 pt-24 space-y-16">
+
+        <!-- HERO SECTION -->
+        <section class="text-center space-y-6 pt-4">
+            <div class="inline-block relative">
+                <!-- Outer Neon Aura -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-neonPink via-neonPurple to-neonCyan rounded-full blur-md opacity-75 animate-pulse"></div>
+                <!-- Profile Frame -->
+                <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full overflow-hidden border-4 border-neonPink p-1 bg-darkBg shadow-[0_0_30px_rgba(255,0,127,0.6)] mx-auto animate-float">
+                    <img src="beauty di.jpeg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" alt="Sister Beauty" class="w-full h-full object-cover rounded-full">
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <span class="px-4 py-1 rounded-full text-xs uppercase tracking-widest bg-pink-950/60 text-pink-400 border border-pink-500/30 font-semibold">
+                    ✨ Royal Birthday Celebration ✨
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight font-outfit">
+                    Happy Birthday <span class="neon-text-pink block sm:inline font-vibes text-5xl sm:text-7xl font-normal text-pink-400">Beauty Di!</span>
+                </h1>
+                <p class="text-gray-300 text-sm sm:text-base max-w-lg mx-auto">
+                    To the most loving, graceful, and brightest sister in the world! May your day shine with endless happiness and neon sparkles. 💖✨
+                </p>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CAKE SECTION -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6 relative border border-neonPurple/40 shadow-[0_0_30px_rgba(161,0,255,0.2)]">
+            <div class="space-y-1">
+                <h2 class="text-2xl font-bold text-neonCyan flex items-center justify-center gap-2">
+                    <i class="fas fa-birthday-cake"></i> Make A Wish & Blow Candle!
+                </h2>
+                <p class="text-xs text-gray-400">Tap or click the flame to blow out the candle and launch fireworks!</p>
+            </div>
+
+            <!-- Cake Visual -->
+            <div class="relative w-48 h-48 mx-auto flex flex-col items-center justify-end">
+                
+                <!-- Candle -->
+                <div id="candleContainer" onclick="blowCandle()" class="cursor-pointer group flex flex-col items-center mb-2 z-20">
+                    <!-- Flame -->
+                    <div id="candleFlame" class="flame group-hover:scale-125 transition"></div>
+                    <!-- Smoke (Hidden initially) -->
+                    <div id="candleSmoke" class="smoke"></div>
+                    <!-- Wick -->
+                    <div class="w-1 h-2 bg-gray-700"></div>
+                    <!-- Candle Stick -->
+                    <div class="w-3 h-12 bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded-t-sm border border-white/40 shadow-sm"></div>
+                </div>
+
+                <!-- Cake Layers -->
+                <!-- Top Layer -->
+                <div class="w-32 h-10 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-t-xl relative border-t-2 border-pink-200 shadow-md">
+                    <div class="absolute inset-x-0 top-0 h-2 bg-pink-200/40 rounded-t-xl"></div>
+                    <!-- Drips -->
+                    <div class="flex justify-around text-pink-300 -mt-1">
+                        <span>♥</span><span>♥</span><span>♥</span><span>♥</span>
+                    </div>
+                </div>
+                <!-- Middle Layer -->
+                <div class="w-40 h-12 bg-gradient-to-r from-purple-700 via-pink-600 to-purple-700 relative border-t border-purple-400 shadow-md flex items-center justify-center">
+                    <span class="text-[10px] tracking-widest text-pink-200 uppercase font-bold">QUEEN BEAUTY</span>
+                </div>
+                <!-- Bottom Base -->
+                <div class="w-48 h-10 bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 rounded-b-lg border-t border-purple-500 flex items-center justify-around px-4">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                    <span class="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+                    <span class="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
+                </div>
+                <!-- Plate -->
+                <div class="w-56 h-3 bg-gradient-to-r from-gray-400 via-white to-gray-400 rounded-full shadow-lg"></div>
+            </div>
+
+            <div id="wishStatus" class="text-sm font-semibold text-neonGold min-h-[24px]">
+                ✨ Flame is glowing! Click candle to blow... ✨
+            </div>
+        </section>
+
+        <!-- INTERACTIVE ENVELOPE / GIFT BOX -->
+        <section class="space-y-4">
+            <div class="text-center space-y-1">
+                <h2 class="text-2xl font-bold text-neonPink flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope-open-text"></i> Sister's Surprise Royal Letter
+                </h2>
+                <p class="text-xs text-gray-400">Click the envelope below to open your special heart-touching message</p>
+            </div>
+
+            <div class="max-w-xl mx-auto">
+                <div id="envelopeCard" onclick="openEnvelope()" class="envelope cursor-pointer rounded-2xl p-6 sm:p-8 text-center border-2 border-neonPink/60 transition-all duration-500 hover:scale-[1.02] shadow-[0_0_25px_rgba(255,0,127,0.3)]">
+                    
+                    <!-- Closed View -->
+                    <div id="envelopeClosed" class="space-y-4 py-8">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-pink-600/30 flex items-center justify-center border border-pink-400 text-3xl text-pink-300 animate-bounce">
+                            💌
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Tap to Open Letter</h3>
+                            <p class="text-xs text-pink-300 mt-1">Written with love for Beauty Di</p>
+                        </div>
+                    </div>
+
+                    <!-- Opened Letter View (Hidden initially) -->
+                    <div id="envelopeOpened" class="hidden space-y-4 text-left transition-all duration-700">
+                        <div class="border-b border-pink-500/30 pb-3 flex justify-between items-center">
+                            <span class="font-vibes text-3xl text-neonPink">Dearest Beauty Di,</span>
+                            <span class="text-xs text-neonCyan bg-cyan-950/60 px-2.5 py-1 rounded-full border border-cyan-500/30">👑 Best Sister Ever</span>
+                        </div>
+                        
+                        <div class="space-y-3 text-sm text-gray-200 leading-relaxed font-outfit">
+                            <p>
+                                Happy Birthday to the most caring, supportive, and amazing sister! You bring so much light, warmth, and laughter into everyone's life around you.
+                            </p>
+                            <p>
+                                Thank you for always guiding me like a mentor, protecting me like a best friend, and loving me unconditionally. May this new year bring you unlimited success, glowing health, endless smiles, and every single dream you wish for!
+                            </p>
+                            <p class="text-neonGold font-semibold pt-2">
+                                Stay shining bright always, Queen! 🎉💖🔥
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-pink-500/30 text-right">
+                            <p class="font-vibes text-2xl text-neonPink">With endless love & respect ❤️</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO MEMORY POLAROID GALLERY -->
+        <section class="space-y-6">
+            <div class="text-center space-y-1">
+                <h2 class="text-2xl font-bold text-neonCyan flex items-center justify-center gap-2">
+                    <i class="fas fa-camera-retro"></i> Glowing Memory Frame
+                </h2>
+                <p class="text-xs text-gray-400">Capturing precious birthday moments</p>
+            </div>
+
+            <div class="flex justify-center">
+                <!-- Polaroid Box -->
+                <div class="bg-cardBg p-4 sm:p-5 rounded-2xl border-2 border-neonCyan/50 shadow-[0_0_25px_rgba(0,243,255,0.25)] max-w-xs sm:max-w-sm w-full transform -rotate-1 hover:rotate-0 transition-all duration-300">
+                    <div class="relative aspect-square rounded-xl overflow-hidden border border-white/10 mb-4 group">
+                        <img src="beauty di.jpeg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" alt="Sister Beauty Memory" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-3">
+                            <span class="text-xs text-pink-300 font-semibold">✨ Beautiful Sister Beauty</span>
+                        </div>
+                    </div>
+                    <div class="text-center space-y-1">
+                        <p class="font-dancing text-2xl text-neonPink">Beauty Di ✨</p>
+                        <p class="text-[11px] text-gray-400 uppercase tracking-widest font-semibold">Always Radiating Happiness</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WISHES FOOTER CARD -->
+        <section class="glass-card rounded-3xl p-6 text-center space-y-4 border border-pink-500/30">
+            <h3 class="text-xl font-bold text-white">Send Instant Birthday Blessings 💖</h3>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="triggerWish('🎉 Happy Birthday Queen!')" class="px-4 py-2 rounded-full bg-pink-600/30 hover:bg-pink-600/50 border border-pink-400/50 text-xs text-pink-200 transition active:scale-95">🎉 Happy Birthday Queen!</button>
+                <button onclick="triggerWish('👑 Stay Blessed Always!')" class="px-4 py-2 rounded-full bg-purple-600/30 hover:bg-purple-600/50 border border-purple-400/50 text-xs text-purple-200 transition active:scale-95">👑 Stay Blessed Always!</button>
+                <button onclick="triggerWish('✨ Wish you success & joy!')" class="px-4 py-2 rounded-full bg-cyan-600/30 hover:bg-cyan-600/50 border border-cyan-400/50 text-xs text-cyan-200 transition active:scale-95">✨ Success & Joy Always!</button>
+            </div>
+            <!-- Toast Notification -->
+            <div id="toast" class="hidden text-xs text-neonGold font-semibold pt-2 animate-pulse"></div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 text-center text-xs text-gray-500 py-4">
+        Made with ❤️️ for Sister Beauty Di • Birthday Celebration Website
+    </footer>
+
     <script>
-        // Generate Background Twinkling Stars
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            const size = Math.random() * 3 + 1;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-            document.body.appendChild(star);
-        }
+        // High Quality Upbeat & Celebratory Audio Streams
+        const audioTracks = [
+            {
+                title: "🎵 Happy Birthday (Upbeat Pop Track)",
+                subtitle: "High Energy Party Beat",
+                url: "https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a731ef.mp3?filename=happy-birthday-15240.mp3"
+            },
+            {
+                title: "🎶 Happy Birthday (Acoustic & Festive)",
+                subtitle: "Warm Melodic Celebration",
+                url: "https://cdn.pixabay.com/download/audio/2021/09/06/audio_2731131a31.mp3?filename=happy-birthday-to-you-piano-version-132717.mp3"
+            }
+        ];
 
-        // Reliable Web Audio Synthesizer Engine (Fixed Autoplay Policies)
-        let audioCtx = null;
-        let isMusicPlaying = false;
-        let melodyInterval = null;
+        let currentTrackIdx = 0;
+        let isPlaying = false;
+        let audioCtx, audioSource, gainNode;
+        const audioElement = new Audio();
+        audioElement.crossOrigin = "anonymous";
+        audioElement.loop = true;
 
-        function initAudio() {
+        // Initialize Web Audio API for boosted volume gain
+        function initAudioEngine() {
             if (!audioCtx) {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (AudioContextClass) {
-                    audioCtx = new AudioContextClass();
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext();
+                    gainNode = audioCtx.createGain();
+                    // Set boosted gain (volume boost up to 2.5x)
+                    gainNode.gain.value = 2.0; 
+                    
+                    audioSource = audioCtx.createMediaElementSource(audioElement);
+                    audioSource.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                } catch(e) {
+                    console.log("Web Audio API fallbacks used:", e);
                 }
             }
             if (audioCtx && audioCtx.state === 'suspended') {
@@ -443,145 +381,184 @@
             }
         }
 
-        function handleMusicClick() {
-            initAudio();
-            if (isMusicPlaying) {
-                stopMusic();
+        // Set initial track
+        function loadTrack(index) {
+            audioElement.src = audioTracks[index].url;
+            document.getElementById('trackTitle').innerText = audioTracks[index].title;
+            document.getElementById('trackSubtitle').innerText = audioTracks[index].subtitle;
+        }
+
+        loadTrack(0);
+
+        function togglePlay() {
+            initAudioEngine();
+            const playIcon = document.getElementById('playIcon');
+
+            if (isPlaying) {
+                audioElement.pause();
+                playIcon.className = "fas fa-play text-white text-sm";
+                isPlaying = false;
             } else {
-                startMusic();
+                audioElement.play().then(() => {
+                    playIcon.className = "fas fa-pause text-white text-sm";
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log("Audio play error: ", err);
+                });
             }
         }
 
-        function startMusic() {
-            if (!audioCtx) initAudio();
-            if (!audioCtx) return;
-
-            isMusicPlaying = true;
-            document.getElementById('music-text').innerText = 'Pause Song';
-            document.getElementById('music-icon').innerText = '⏸️';
-
-            // Happy Birthday Note Frequencies (Hz)
-            const notes = [
-                { f: 264, d: 0.3 }, { f: 264, d: 0.3 }, { f: 297, d: 0.6 }, { f: 264, d: 0.6 }, { f: 352, d: 0.6 }, { f: 330, d: 0.9 },
-                { f: 264, d: 0.3 }, { f: 264, d: 0.3 }, { f: 297, d: 0.6 }, { f: 264, d: 0.6 }, { f: 396, d: 0.6 }, { f: 352, d: 0.9 },
-                { f: 264, d: 0.3 }, { f: 264, d: 0.3 }, { f: 528, d: 0.6 }, { f: 440, d: 0.6 }, { f: 352, d: 0.6 }, { f: 330, d: 0.6 }, { f: 297, d: 0.9 }
-            ];
-
-            let index = 0;
-            if (melodyInterval) clearInterval(melodyInterval);
-
-            melodyInterval = setInterval(() => {
-                if (!isMusicPlaying) return;
-                const note = notes[index];
-                playTone(note.f, note.d);
-                index = (index + 1) % notes.length;
-            }, 400);
-        }
-
-        function stopMusic() {
-            isMusicPlaying = false;
-            if (melodyInterval) clearInterval(melodyInterval);
-            document.getElementById('music-text').innerText = 'Play Song';
-            document.getElementById('music-icon').innerText = '🎵';
-        }
-
-        function playTone(freq, duration) {
-            if (!audioCtx || audioCtx.state !== 'running') return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {
-                console.error(e);
+        function switchTrack() {
+            currentTrackIdx = (currentTrackIdx + 1) % audioTracks.length;
+            loadTrack(currentTrackIdx);
+            if (isPlaying) {
+                audioElement.play();
+            } else {
+                togglePlay();
             }
         }
 
-        let isCandleBlown = false;
+        function toggleMute() {
+            audioElement.muted = !audioElement.muted;
+            const volIcon = document.getElementById('volumeIcon');
+            volIcon.className = audioElement.muted ? "fas fa-volume-mute text-xs text-red-400" : "fas fa-volume-up text-xs";
+        }
+
+        // Candle Blow Out Interaction
+        let isBlown = false;
         function blowCandle() {
-            const flame = document.getElementById('flame');
-            flame.classList.add('off');
+            if (isBlown) return;
+            isBlown = true;
 
-            if (!isCandleBlown) {
-                isCandleBlown = true;
-                triggerConfettiBurst();
-                initAudio();
-                if (!isMusicPlaying) {
-                    startMusic();
-                }
+            // Hide Flame, Show Smoke
+            document.getElementById('candleFlame').style.display = 'none';
+            document.getElementById('candleSmoke').style.display = 'block';
+
+            // Status message update
+            document.getElementById('wishStatus').innerHTML = "🎉 Wish blown away to the stars! Happy Birthday Beauty Di! 🎉";
+
+            // Trigger Massive Confetti
+            launchFireworks();
+
+            // Auto Play Audio if not already playing
+            if (!isPlaying) {
+                togglePlay();
             }
         }
 
-        function toggleLetter() {
-            const letter = document.getElementById('secret-letter');
-            letter.classList.toggle('show');
+        // Confetti Fireworks Function
+        function launchFireworks() {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
 
-            if (letter.classList.contains('show')) {
-                triggerConfettiBurst();
-                initAudio();
-                if (!isMusicPlaying) {
-                    startMusic();
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff007f', '#00f3ff', '#ffd700', '#a100ff']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff007f', '#00f3ff', '#ffd700', '#a100ff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
                 }
+            })();
+        }
+
+        // Envelope Unfold Interaction
+        let isEnvelopeOpen = false;
+        function openEnvelope() {
+            if (isEnvelopeOpen) return;
+            isEnvelopeOpen = true;
+
+            document.getElementById('envelopeClosed').classList.add('hidden');
+            document.getElementById('envelopeOpened').classList.remove('hidden');
+            document.getElementById('envelopeCard').classList.remove('hover:scale-[1.02]');
+            
+            // Confettiburst for letter
+            confetti({
+                particleCount: 40,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            if (!isPlaying) {
+                togglePlay();
             }
         }
 
-        // Confetti Engine
-        function triggerConfettiBurst() {
-            const canvas = document.getElementById('confetti-canvas');
-            const ctx = canvas.getContext('2d');
+        // Instant Wish Trigger
+        function triggerWish(msg) {
+            confetti({
+                particleCount: 30,
+                spread: 60,
+                origin: { y: 0.8 }
+            });
+
+            const toast = document.getElementById('toast');
+            toast.innerText = `Sent: "${msg}" ✨`;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Star Background Particle System
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
-            const particles = [];
-            const colors = ['#ec4899', '#8b5cf6', '#fbbf24', '#38bdf8', '#34d399', '#ffffff'];
-
-            for (let i = 0; i < 100; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height * 0.5,
-                    radius: Math.random() * 6 + 3,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    vx: (Math.random() - 0.5) * 6,
-                    vy: Math.random() * 4 + 2
-                });
-            }
-
-            let frames = 0;
-            function render() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach((p) => {
-                    ctx.beginPath();
-                    ctx.fillStyle = p.color;
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                    p.x += p.vx;
-                    p.y += p.vy;
-                });
-
-                frames++;
-                if (frames < 120) {
-                    requestAnimationFrame(render);
-                } else {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                }
-            }
-            render();
         }
 
-        // Global touch handler to unblock AudioContext on mobile tap
-        document.addEventListener('touchstart', function() {
-            initAudio();
-        }, { once: true });
-        document.addEventListener('click', function() {
-            initAudio();
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        for (let i = 0; i < 80; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.5,
+                color: ['#ff007f', '#00f3ff', '#ffffff', '#a100ff'][Math.floor(Math.random() * 4)],
+                alpha: Math.random(),
+                speed: Math.random() * 0.02 + 0.005
+            });
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) {
+                    star.speed = -star.speed;
+                }
+                ctx.globalAlpha = Math.abs(star.alpha);
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = star.color;
+                ctx.fill();
+            });
+            requestAnimationFrame(animateStars);
+        }
+
+        animateStars();
+
+        // Autoplay attempt on user first tap
+        document.body.addEventListener('click', function firstClick() {
+            initAudioEngine();
+            document.body.removeEventListener('click', firstClick);
         }, { once: true });
     </script>
 </body>
 </html>
-```
