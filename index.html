@@ -24,25 +24,40 @@
             position: relative;
         }
 
-        /* Top Floating Music Control Button */
+        /* Ambient Glowing Background Orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .orb-1 { top: -60px; left: -60px; width: 320px; height: 320px; background: #ff007f; }
+        .orb-2 { bottom: -60px; right: -60px; width: 350px; height: 350px; background: #7928ca; }
+
+        /* Top Music Floating Control */
         .music-control {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 9999;
-            background: linear-gradient(45deg, #ec4899, #8b5cf6);
+            background: rgba(255, 0, 127, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid #ff007f;
             color: #fff;
-            padding: 12px 22px;
+            padding: 12px 24px;
             border-radius: 30px;
-            border: 2px solid #ffffff;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.9);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
             font-weight: bold;
             font-size: 1rem;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
-        .music-control:active {
-            transform: scale(0.95);
+        .music-control:hover {
+            background: rgba(255, 0, 127, 0.6);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.9);
+            transform: scale(1.05);
         }
 
         header {
@@ -53,26 +68,30 @@
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            text-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899, 0 0 30px #8b5cf6;
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, #ff007f, #00dfd8, #7928ca);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
             margin-bottom: 8px;
         }
 
         .subtitle {
             font-size: 1.1rem;
             color: #d1d5db;
+            font-style: italic;
         }
 
-        /* Main Container Card */
+        /* Main Glassmorphism Royal Card */
         .main-card {
-            background: rgba(20, 15, 38, 0.85);
-            border: 1px solid rgba(236, 72, 153, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 0, 127, 0.4);
             border-radius: 24px;
             width: 100%;
-            max-width: 600px;
+            max-width: 620px;
             padding: 30px 20px;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 40px rgba(121, 40, 202, 0.4);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -80,15 +99,15 @@
             margin-bottom: 30px;
         }
 
-        /* Profile Frame with Neon Glow */
+        /* Royal Neon Profile Frame */
         .profile-wrapper {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
             padding: 5px;
-            background: linear-gradient(45deg, #ec4899, #8b5cf6, #00dfd8);
-            box-shadow: 0 0 25px #ec4899;
+            background: linear-gradient(45deg, #ff007f, #00dfd8);
+            box-shadow: 0 0 35px rgba(255, 0, 127, 0.8);
             margin-bottom: 25px;
         }
 
@@ -111,11 +130,11 @@
 
         .cake {
             position: relative;
-            width: 150px;
-            height: 90px;
-            background: linear-gradient(to bottom, #f472b6, #db2777);
+            width: 160px;
+            height: 95px;
+            background: linear-gradient(to right, #ff007f, #7928ca);
             border-radius: 12px 12px 4px 4px;
-            box-shadow: inset 0 -10px 0 #9d174d, 0 0 20px rgba(244, 114, 182, 0.3);
+            box-shadow: inset 0 -12px 0 #be185d, 0 0 25px rgba(255, 0, 127, 0.5);
             margin-top: 40px;
             cursor: pointer;
         }
@@ -123,21 +142,21 @@
         .cake::before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 0;
             width: 100%;
-            height: 16px;
+            height: 18px;
             background: #fbcfe8;
             border-radius: 10px 10px 0 0;
         }
 
         .candle {
             position: absolute;
-            top: -32px;
+            top: -34px;
             left: 50%;
             transform: translateX(-50%);
             width: 12px;
-            height: 32px;
+            height: 34px;
             background: repeating-linear-gradient(45deg, #00dfd8, #00dfd8 5px, #ffffff 5px, #ffffff 10px);
             border-radius: 3px;
         }
@@ -149,9 +168,9 @@
             transform: translateX(-50%);
             width: 14px;
             height: 20px;
-            background: #fbbf24;
+            background: #ff007f;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px #f59e0b, 0 0 25px #f59e0b;
+            box-shadow: 0 0 15px #ff007f, 0 0 25px #ff007f;
             animation: flicker 0.6s infinite alternate;
         }
 
@@ -165,22 +184,27 @@
         }
 
         .btn-action {
-            margin-top: 20px;
-            background: linear-gradient(45deg, #ec4899, #8b5cf6);
-            border: 1px solid #ffffff;
+            margin-top: 22px;
+            background: linear-gradient(45deg, #ff007f, #7928ca);
+            border: none;
             color: #fff;
-            padding: 12px 28px;
+            padding: 12px 30px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+            transition: transform 0.2s;
             z-index: 10;
         }
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.9);
+        }
 
-        /* Envelope / Card Section */
+        /* Neon Envelope/Card Section */
         .envelope-container {
-            margin-top: 25px;
+            margin-top: 20px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -189,22 +213,29 @@
 
         .letter-card {
             display: none;
-            background: #ffffff;
-            color: #111827;
+            background: rgba(15, 10, 30, 0.95);
+            border: 1px solid #00dfd8;
+            color: #ffffff;
             padding: 25px;
             border-radius: 16px;
             margin-top: 20px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 223, 216, 0.5);
+            animation: fadeIn 0.6s ease;
         }
 
-        /* Polaroid Gallery */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Neon Polaroid Gallery */
         .gallery-title {
             font-size: 1.6rem;
-            margin: 20px 0 15px;
-            color: #ec4899;
-            text-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+            margin: 25px 0 15px;
+            color: #00dfd8;
+            text-shadow: 0 0 12px #00dfd8;
         }
 
         .polaroid-grid {
@@ -218,16 +249,24 @@
         }
 
         .polaroid {
-            background: #ffffff;
+            background: #120b29;
+            border: 1px solid rgba(255, 0, 127, 0.5);
             padding: 12px 12px 25px 12px;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
             transform: rotate(-3deg);
+            transition: transform 0.3s ease;
             width: 200px;
         }
 
         .polaroid:nth-child(even) {
             transform: rotate(3deg);
+        }
+
+        .polaroid:hover {
+            transform: scale(1.08) rotate(0deg);
+            box-shadow: 0 0 30px rgba(0, 223, 216, 0.7);
+            z-index: 5;
         }
 
         .polaroid img {
@@ -238,8 +277,8 @@
         }
 
         .polaroid-caption {
-            color: #1f2937;
-            font-weight: 700;
+            color: #f472b6;
+            font-weight: 600;
             text-align: center;
             margin-top: 10px;
             font-size: 0.95rem;
@@ -260,15 +299,18 @@
 
     <button class="music-control" id="music-btn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
 
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
     <canvas id="confetti-canvas"></canvas>
 
     <header>
         <h1>Happy Birthday Beauty! 🎉</h1>
-        <p class="subtitle">Wishing you a magical day filled with joy & success!</p>
+        <p class="subtitle">Wishing you a magical day filled with love and laughter!</p>
     </header>
 
     <main class="main-card">
-        <!-- Sister Photo beauty di.jpeg -->
+        <!-- Photo beauty di.jpeg -->
         <div class="profile-wrapper">
             <img src="beauty di.jpeg" alt="Beauty" class="profile-img">
         </div>
@@ -280,32 +322,32 @@
                     <div class="flame" id="flame"></div>
                 </div>
             </div>
-            <button class="btn-action" onclick="blowCandle()">🕯️ Blow Candle</button>
+            <button class="btn-action" onclick="blowCandle()">🕯️ Blow the Candle!</button>
         </div>
 
         <!-- Surprise Letter -->
         <div class="envelope-container">
-            <button class="btn-action" style="background: linear-gradient(45deg, #00dfd8, #8b5cf6);" onclick="openEnvelope()">💌 Open Birthday Wish</button>
+            <button class="btn-action" style="background: linear-gradient(45deg, #00dfd8, #7928ca);" onclick="openEnvelope()">💌 Open Birthday Wish</button>
 
             <div class="letter-card" id="secret-letter">
-                <h3 style="color: #ec4899; font-size: 1.3rem;">Dear Sister Beauty, ✨</h3>
-                <p style="margin-top: 12px; line-height: 1.6; font-size: 1rem; color: #333;">
+                <h3 style="color: #00dfd8; font-size: 1.3rem;">Dear Sister Beauty, ✨</h3>
+                <p style="margin-top: 12px; line-height: 1.6; font-size: 1rem; color: #e5e7eb;">
                     Happy Birthday! May your path always be filled with happiness, laughter, and amazing achievements. Keep smiling and shining bright like a star! 💖
                 </p>
             </div>
         </div>
     </main>
 
-    <!-- Polaroid Photo Gallery -->
-    <h2 class="gallery-title">📸 Special Memories</h2>
+    <!-- Neon Polaroid Photo Gallery -->
+    <h2 class="gallery-title">📸 Memory Gallery</h2>
     <div class="polaroid-grid">
         <div class="polaroid">
             <img src="beauty di.jpeg" alt="Beauty Frame 1">
-            <div class="polaroid-caption">Best Sister Ever ❤️</div>
+            <div class="polaroid-caption">Best Sister ❤️</div>
         </div>
         <div class="polaroid">
             <img src="beauty di.jpeg" alt="Beauty Frame 2">
-            <div class="polaroid-caption">Stay Blessed 🎉</div>
+            <div class="polaroid-caption">Keep Smiling ✨</div>
         </div>
     </div>
 
@@ -324,7 +366,7 @@
             startMusic();
         }
 
-        // Instant Direct Web Audio
+        // Web Audio Synthesizer
         let audioCtx = null;
         let isPlaying = false;
         let timer = null;
@@ -381,7 +423,7 @@
             } catch(e) {}
         }
 
-        // Confetti Effect
+        // Confetti Burst Effect
         function startConfetti() {
             const canvas = document.getElementById('confetti-canvas');
             const ctx = canvas.getContext('2d');
@@ -389,9 +431,9 @@
             canvas.height = window.innerHeight;
 
             const particles = [];
-            const colors = ['#ec4899', '#8b5cf6', '#fbbf24', '#00dfd8'];
+            const colors = ['#ff007f', '#7928ca', '#00dfd8', '#ffbf00'];
 
-            for (let i = 0; i < 70; i++) {
+            for (let i = 0; i < 75; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height - canvas.height,
